@@ -18,7 +18,7 @@ steps:
     curl https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/LLVM-13.0.0-win64.exe -o llvm.exe
     write-host Extracting llvm
     7z x llvm.exe -ollvm
-  displayName: 'install llvm'
+  displayName: 'install llvm 13'
   workingDirectory: $(Pipeline.Workspace)
   condition: ne(variables.CACHE_RESTORED, 'true')
 
@@ -52,6 +52,7 @@ steps:
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '3.9'
+  displayName: 'use python3.9'
   name: python
 
 - powershell: pip install cffi
