@@ -24,7 +24,8 @@ steps:
     7z x llvm.exe -ollvm
   displayName: 'install llvm 13'
   workingDirectory: $(Pipeline.Workspace)
-  condition: ne(variables.CACHE_RESTORED, 'true')
+  condition: and(succeededOrFailed(),
+                 ne(variables.CACHE_RESTORED, 'true'))
 
 - powershell: |
     Write-Host Prepending $env:llvm_bin_path to PATH
