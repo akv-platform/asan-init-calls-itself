@@ -4,6 +4,7 @@ from subprocess import check_output, run
 
 file_path = Path(__file__).absolute()
 file_directory = file_path.parent
+cwd = file_directory
 
 llvm_path = Path(
     check_output("where clang").decode().splitlines()[0].strip()).parent.parent
@@ -46,14 +47,14 @@ includes = f"-I{file_directory}"
 cmd = (
     f'"{cc}" {lib_cflags} {strict_flags} {assan_flags} {includes} -c {sources} -o mylib.o'
 )
-print(f"Running\n  {cmd}")
-run(cmd)
+print(f"{cwd=} running  {cmd=}")
+run(cmd, cwd=cwd)
 
 cmd = (
     f'"{cc}" {lib_cflags} {assan_flags} "{clang_rt_asan_thunk_lib}" mylib.o '
     '-shared -o mylib.dll')
-print(f"Running\n  {cmd}")
-run(cmd)
+print(f"{cwd=} running  {cmd=}")
+run(cmd, cwd=cwd)
 
 py_file_run_c = "py_file_run.c"
 
@@ -90,5 +91,5 @@ cmd = " ".join((
     f' {" ".join([x for x in clang_rt_asan_libs_str])} '
     ' py_file_run.c -o py_file_run.exe',
 ))
-print(f"Running\n  {cmd}")
-run(cmd)
+print(f"{cwd=} running  {cmd=}")
+run(cmd, cwd=cwd)

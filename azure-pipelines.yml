@@ -55,9 +55,8 @@ steps:
 - powershell: pip install cffi
   displayName: 'Install python dependencies'
 
-- powershell: python py_build.py
-  displayName: 'Install llvm'
-  workingDirectory: src
+- powershell: python src
+  displayName: 'build src'
 
 - powershell: python test.py
   displayName: 'test'
