@@ -9,13 +9,13 @@ steps:
     & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property catalog_productDisplayVersion
   displayName: 'visual studio version'
 
-- task: Cache@2
-  inputs:
-    key: '"llvm13-cachev1" | "$(Agent.OS)"'
-    restoreKeys: '"llvm13-cachev1" | "$(Agent.OS)"'
-    path: $(Pipeline.Workspace)/llvm
-    cacheHitVar: CACHE_RESTORED
-  displayName: 'cache llvm installation'
+# - task: Cache@2
+#   inputs:
+#     key: '"llvm13-cachev1" | "$(Agent.OS)"'
+#     restoreKeys: '"llvm13-cachev1" | "$(Agent.OS)"'
+#     path: $(Pipeline.Workspace)/llvm
+#     cacheHitVar: CACHE_RESTORED
+#   displayName: 'cache llvm installation'
 
 - powershell: |
     write-host Downloading llvm
@@ -24,8 +24,8 @@ steps:
     7z x llvm.exe -ollvm
   displayName: 'install llvm 13'
   workingDirectory: $(Pipeline.Workspace)
-  condition: and(succeededOrFailed(),
-                 ne(variables.CACHE_RESTORED, 'true'))
+  # condition: and(succeededOrFailed(),
+  #                ne(variables.CACHE_RESTORED, 'true'))
 
 - powershell: |
     Write-Host Prepending $env:llvm_bin_path to PATH
