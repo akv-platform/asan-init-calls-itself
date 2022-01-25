@@ -1,0 +1,2 @@
+$env:PATH="$(Get-Location)\llvm\bin;$env:PATH"
+$env:PATH="$(Get-Location)\llvm\lib\clang\13.0.0\lib\windows;$env:PATH"
