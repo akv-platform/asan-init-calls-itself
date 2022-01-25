@@ -6,25 +6,28 @@ pool:
 
 steps:
 - powershell: |
+    write-host Downloading llvm
     Invoke-WebRequest https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/LLVM-13.0.0-win64.exe -OutFile llvm.exe
-    7z x -o llvm llvm.exe
+    write-host Extracting llvm
+    7z x -ollvm llvm.exe
 
+    write-host Downloading fd
     Invoke-WebRequest https://github.com/sharkdp/fd/releases/download/v8.2.1/fd-v8.2.1-i686-pc-windows-msvc.zip -OutFile fd.zip
     7z x fd.zip
 
+    write-host Finding files
     ./fd.exe clang_rt.asan_dynamic-x86_64.dll
     ./fd.exe clang_rt.asan_dll_thunk-x86_64.lib
     ./fd.exe clang_rt.asan-x86_64.lib
     ./fd.exe clang_rt.asan_cxx-x86_64.lib
     ./fd.exe clang.exe
+    get-command clang
 
     Write-Host Prepending $env:llvm_bin_path to PATH
     Write-Host "##vso[task.prependpath]$env:llvm_bin_path"
 
     Write-Host Prepending $env:llvm_lib_windows to PATH
     Write-Host "##vso[task.prependpath]$env:llvm_lib_windows"
-
-    get-command clang
 
   displayName: 'Install llvm'
   env:
