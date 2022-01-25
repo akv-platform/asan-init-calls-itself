@@ -52,6 +52,7 @@ steps:
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '3.9'
+  name: python
 
 - powershell: pip install cffi
   displayName: 'Install python dependencies'
@@ -59,6 +60,6 @@ steps:
 - powershell: python src
   displayName: 'build src'
 
-- powershell: python test.py
+- powershell: ./py_file_run.exe $(python.pythonLocation) .\test.py
   displayName: 'test'
   workingDirectory: src
