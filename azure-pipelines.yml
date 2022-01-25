@@ -7,8 +7,8 @@ pool:
 steps:
 - task: Cache@2
   inputs:
-    key: llvm13
-    restoreKeys: llvm13
+    key: llvm13-cachev1
+    restoreKeys: llvm13-cachev1
     path: $(Pipeline.Workspace)/llvm
     cacheHitVar: CACHE_RESTORED
 
