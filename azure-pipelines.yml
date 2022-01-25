@@ -7,10 +7,11 @@ pool:
 steps:
 - task: Cache@2
   inputs:
-    key: llvm13-cachev1
-    restoreKeys: llvm13-cachev1
+    key: '"llvm13-cachev1" | "$(Agent.OS)"'
+    restoreKeys: '"llvm13-cachev1" | "$(Agent.OS)"'
     path: $(Pipeline.Workspace)/llvm
     cacheHitVar: CACHE_RESTORED
+  displayName: 'cache llvm installation'
 
 - powershell: |
     write-host Downloading llvm
