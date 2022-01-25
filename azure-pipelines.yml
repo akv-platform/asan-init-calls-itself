@@ -34,4 +34,17 @@ steps:
     llvm_bin_path: $(Build.SourcesDirectory)\llvm\bin
     llvm_lib_windows: $(Build.SourcesDirectory)\llvm\lib\clang\13.0.0\lib\windows
 
-- powershell: |
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.9'
+
+- powershell: pip install cffi
+  displayName: 'Install python dependencies'
+
+- powershell: python py_build.py
+  displayName: 'Install llvm'
+  workingDirectory: src
+
+- powershell: python test.py
+  displayName: 'test'
+  workingDirectory: src
