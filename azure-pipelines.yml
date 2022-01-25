@@ -5,6 +5,10 @@ pool:
   vmImage: windows-2019
 
 steps:
+- powershell: |
+    & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property catalog_productDisplayVersion
+  displayName: 'visual studio version'
+
 - task: Cache@2
   inputs:
     key: '"llvm13-cachev1" | "$(Agent.OS)"'
