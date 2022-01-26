@@ -44,17 +44,25 @@ link_flags = ",".join([
 sources = "mylib.c"
 includes = f"-I{file_directory}"
 
+def execute(cmd, cwd):
+    print(f"{cwd=} running  {cmd=}")
+    cmd_result = run(cmd, cwd=cwd, capture_output=True)
+    if (cmd_result.returncode != 0):
+        print(cmd_result.stdout)
+        print(cmd_result.stderr)
+
+
 cmd = (
-    f'"{cc}" {lib_cflags} {strict_flags} {assan_flags} {includes} -c {sources} -o mylib.o'
+    f'"{cc}" {lib_cflags} {strict_flags} {assan_flags} {includes} '
+    '-c {sources} -o mylib.o'
 )
-print(f"{cwd=} running  {cmd=}")
-run(cmd, cwd=cwd)
+execute(cmd, cwd)
+
 
 cmd = (
     f'"{cc}" {lib_cflags} {assan_flags} "{clang_rt_asan_thunk_lib}" mylib.o '
     '-shared -o mylib.dll')
-print(f"{cwd=} running  {cmd=}")
-run(cmd, cwd=cwd)
+execute(cmd, cwd)
 
 py_file_run_c = "py_file_run.c"
 
@@ -83,6 +91,6 @@ cmd = " ".join((
     # The EXE needs to have clang_rt.asan-x86_64.lib linked
     f' {" ".join([x for x in clang_rt_asan_libs_str])} '
     ' py_file_run.c -o py_file_run.exe',
+
 ))
-print(f"{cwd=} running  {cmd=}")
-run(cmd, cwd=cwd)
+execute(cmd, cwd)
