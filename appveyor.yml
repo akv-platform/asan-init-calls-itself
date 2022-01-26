@@ -15,13 +15,16 @@ install:
       curl https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/LLVM-13.0.0-win64.exe -o llvm.exe
       7z x llvm.exe -ollvm
 
+  - ps: |
       write-host "LLVM paths" -ForegroundColor Black -BackgroundColor DarkYellow
       write-host "$(get-location)\llvm\bin"
       write-host "$(get-location)\llvm\lib\clang\13.0.0\lib\windows"
 
+  - ps: |
       Invoke-WebRequest https://github.com/sharkdp/fd/releases/download/v8.2.1/fd-v8.2.1-i686-pc-windows-msvc.zip -OutFile fd.zip
       7z x fd.zip -o"C:\Windows"
 
+  - ps: |
       write-host "Finding files" -ForegroundColor Black -BackgroundColor DarkYellow
       fd.exe -HI clang_rt.asan_dynamic-x86_64.dll
       fd.exe -HI clang_rt.asan_dll_thunk-x86_64.lib
@@ -54,5 +57,4 @@ test_script:
 
 on_failure:
   # https://www.appveyor.com/docs/how-to/rdp-to-build-worker/
-  - ps: Install-WUUpdates -Updates $(Start-WUScan)
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
