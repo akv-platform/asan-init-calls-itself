@@ -45,7 +45,8 @@ build_script:
       get-command clang
       get-command lld-link
 
-      py -3.9-64 src
+      # stderr to stdout to avoid appveyor crashing on warnings
+      py -3.9-64 src 2>&1
 
 test_script:
   - ps: ./src/py_file_run.exe C:\Python39-x64 .\test.py

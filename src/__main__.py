@@ -67,14 +67,7 @@ assert all(x.exists() for x in clang_rt_asan_libs), (
 
 clang_rt_asan_libs_str = [f'"{x}"' for x in clang_rt_asan_libs]
 
-default_python_dir = Path(
-    f"c:/Python{sys.version_info.major}{sys.version_info.minor}")
-if (default_python_dir / "include/Python.h").exists():
-    python_dir = default_python_dir
-elif (Path(sys.executable).parent / "include/Python.h").exists():
-    python_dir = Path(sys.executable).parent
-else:
-    raise RuntimeError("Python.h not found")
+python_dir = Path(sys.base_prefix)
 python_include_dir = python_dir / "include"
 print(f"Python include directory {python_include_dir}")
 python_libs_dir = python_dir / "libs"
