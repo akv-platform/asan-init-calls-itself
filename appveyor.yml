@@ -25,6 +25,10 @@ install:
       7z x fd.zip -o"C:\Windows"
 
   - ps: |
+        curl "https://download.sysinternals.com/files/Procdump.zip" -o "Procdump.zip"
+        7z x Procdump.zip -o"C:\Windows
+
+  - ps: |
       write-host "Finding files" -ForegroundColor Black -BackgroundColor DarkYellow
       fd.exe -HI clang_rt.asan_dynamic-x86_64.dll
       fd.exe -HI clang_rt.asan_dll_thunk-x86_64.lib
