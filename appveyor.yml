@@ -50,3 +50,9 @@ build_script:
 
 test_script:
   - ps: ./src/py_file_run.exe C:\Python39-x64 .\test.py
+
+
+on_failure:
+  # https://www.appveyor.com/docs/how-to/rdp-to-build-worker/
+  - ps: Install-WUUpdates -Updates $(Start-WUScan)
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
