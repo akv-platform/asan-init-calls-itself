@@ -14,7 +14,7 @@ try {
     $env:PYTHONPATH="C:\Python36-x64\Lib"
 
     # lldb works with python 3.6 only, thus environment variables above
-    lldb ./src/py_file_run.exe C:\Python39-x64 .\test.py
+    lldb $repoPath\src\py_file_run.exe C:\Python39-x64 $repoPath\src\test.py
 
 } finally {
     # restore the previous values
