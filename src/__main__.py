@@ -54,7 +54,7 @@ def execute(cmd, cwd):
 
 cmd = (
     f'"{cc}" {lib_cflags} {strict_flags} {assan_flags} {includes} '
-    '-c {sources} -o mylib.o'
+    f'-c {sources} -o mylib.o'
 )
 execute(cmd, cwd)
 
