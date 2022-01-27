@@ -1,6 +1,6 @@
 
 write-host "Download llvm" -ForegroundColor Black -BackgroundColor DarkYellow
-curl https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/LLVM-13.0.0-win64.exe -o llvm.exe
+Invoke-WebRequest https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/LLVM-13.0.0-win64.exe -OutFile llvm.exe
 7z x llvm.exe -ollvm
 
 
