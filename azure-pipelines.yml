@@ -6,8 +6,9 @@ pool:
 
 steps:
 - powershell: |
+    [environment]::OSVersion
     & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property catalog_productDisplayVersion
-  displayName: 'visual studio version'
+  displayName: 'versions: OS and Visual Studio'
 
 # - task: Cache@2
 #   inputs:

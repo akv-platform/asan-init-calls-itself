@@ -9,6 +9,7 @@ build:
 # scripts that run after cloning repository
 install:
   - ps: |
+      [environment]::OSVersion
       & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property catalog_productDisplayVersion
 
   - ps: scripts/get-binaries.ps1
