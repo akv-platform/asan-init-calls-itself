@@ -15,6 +15,15 @@ install:
   - ps: |
       & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property catalog_productDisplayVersion
 
+  # Remove system's llvm
+  - ps: |
+      $previous_clang_installation = (get-command clang).Source | Split-Path -Parent | Split-Path -Parent
+      write-host "The following folder will be deleted: $previous_clang_installation" -ForegroundColor Black -BackgroundColor DarkYellow
+      ls $previous_clang_installation
+      rm -Recurse -Force $previous_clang_installation
+
+      ls $($previous_clang_installation | Split-Path -Parent)
+
   - ps: scripts/get-binaries.ps1
 
 build_script:

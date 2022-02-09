@@ -23,6 +23,10 @@ steps:
 #   displayName: 'cache llvm installation'
 
 - powershell: |
+    choco uninstall --yes --all-versions llvm
+  displayName: 'uninstall system llvm'
+
+- powershell: |
     write-host Downloading llvm
     curl https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/LLVM-13.0.0-win64.exe -o llvm.exe
     write-host Extracting llvm

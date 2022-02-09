@@ -1,3 +1,4 @@
+# Remove possible conflicts with a previous clang llvm installation
 
 write-host "Download llvm" -ForegroundColor Black -BackgroundColor DarkYellow
 Invoke-WebRequest https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/LLVM-13.0.0-win64.exe -OutFile llvm.exe
