@@ -32,6 +32,11 @@ build_script:
 test_script:
   - ps: |
       pushd .\src
+      dumpbin /DEPENDENTS py_file_run.exe
+
+      get-command api-ms-win-core-synch-l1-2-0.dll
+      get-command python39.dll
+      get-command KERNEL32.dll
       .\py_file_run.exe C:\Python39-x64 .\test.py
 
 
