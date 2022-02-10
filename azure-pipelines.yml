@@ -76,8 +76,6 @@ steps:
   displayName: 'build src'
 
 - powershell: |
-    dumpbin /DEPENDENTS py_file_run.exe
-
     get-command api-ms-win-core-synch-l1-2-0.dll
     get-command python39.dll
     get-command KERNEL32.dll
