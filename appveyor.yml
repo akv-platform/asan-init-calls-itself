@@ -33,9 +33,9 @@ test_script:
   - ps: |
       pushd .\src
 
-      get-command api-ms-win-core-synch-l1-2-0.dll
-      get-command python39.dll
-      get-command KERNEL32.dll
+      get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
+      get-command python39.dll | Format-List *
+      get-command KERNEL32.dll | Format-List *
       .\py_file_run.exe C:\Python39-x64 .\test.py
 
 

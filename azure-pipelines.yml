@@ -79,9 +79,9 @@ steps:
     $dumpbin = vswhere -latest -requires Microsoft.Component.MSBuild -find **\dumpbin.exe | select-object -first 1
     & $dumpbin /dependents py_file_run.exe
 
-    get-command api-ms-win-core-synch-l1-2-0.dll
-    get-command python39.dll
-    get-command KERNEL32.dll
+    get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
+    get-command python39.dll | Format-List *
+    get-command KERNEL32.dll | Format-List *
 
     ./py_file_run.exe $(python.pythonLocation) .\test.py
   displayName: 'test'
