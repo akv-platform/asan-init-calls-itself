@@ -27,6 +27,7 @@ jobs:
       # Remove-Item "C:\Program Files\LLVM" -recurse
           
       - run: |
+          Get-WmiObject -Class Win32_Processor -ComputerName.
           dir "C:\Program Files\"
           Get-Location
           Get-ComputerInfo  | select windowsversion
@@ -93,7 +94,6 @@ jobs:
         with:
           python-version: '3.9'
           architecture: 'x64' 
-          name: 'use python3.9'
 
       - run: |
           pip install cffi
