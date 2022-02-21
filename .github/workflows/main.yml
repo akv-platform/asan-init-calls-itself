@@ -30,7 +30,7 @@ jobs:
           Get-ComputerInfo  | select windowsversion
           [environment]::OSVersion
         shell: powershell
-        workingDirectory: $env:GITHUB_WORKSPACE
+        working-directory: ${{env.GITHUB_WORKSPACE}}
         name: 'Windows version'
 
       - run: |
@@ -54,5 +54,5 @@ jobs:
           write-host Extracting llvm
           7z x llvm.exe -ollvm
         shell: powershell
-        workingDirectory: $env:GITHUB_WORKSPACE
+        working-directory: $env:GITHUB_WORKSPACE
         name: 'install llvm 13'
