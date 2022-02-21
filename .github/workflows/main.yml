@@ -38,12 +38,8 @@ jobs:
         name: 'Visual Studio version'
 
       - run: |
-          choco uninstall --yes --all-versions llvm
-        shell: powershell
-        name: 'uninstall system llvm'
-
-      - run: |
-          choco uninstall --yes --all-versions llvm
+          # choco uninstall --yes --all-versions llvm
+          llvm
         shell: powershell
         name: 'uninstall system llvm'
       
