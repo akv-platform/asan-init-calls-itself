@@ -30,7 +30,6 @@ jobs:
           Get-ComputerInfo  | select windowsversion
           [environment]::OSVersion
         shell: powershell
-        working-directory: ${{env.GITHUB_WORKSPACE}}
         name: 'Windows version'
 
       - run: |
@@ -54,5 +53,35 @@ jobs:
           write-host Extracting llvm
           7z x llvm.exe -ollvm
         shell: powershell
-        working-directory: $env:GITHUB_WORKSPACE
+        working-directory: ${{env.GITHUB_WORKSPACE}}
         name: 'install llvm 13'
+
+      - run: |
+          Write-Host Prepending $env:llvm_bin_path to PATH
+          Write-Host "##vso[task.prependpath]$env:llvm_bin_path"
+          Write-Host Prepending $env:llvm_lib_windows to PATH
+          Write-Host "##vso[task.prependpath]$env:llvm_lib_windows"
+        shell: powershell
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        name: 'set PATH'
+        env:
+          llvm_bin_path: ${{env.GITHUB_WORKSPACE}}\llvm\bin
+          llvm_lib_windows: ${{env.GITHUB_WORKSPACE}}\llvm\lib\clang\13.0.0\lib\windows'        
+      
+      - run: |
+          write-host Downloading fd
+          Invoke-WebRequest https://github.com/sharkdp/fd/releases/download/v8.2.1/fd-v8.2.1-i686-pc-windows-msvc.zip -OutFile fd.zip
+          7z x fd.zip -o"C:\Windows"
+          write-host Finding files
+          fd.exe -HI clang_rt.asan_dynamic-x86_64.dll
+          fd.exe -HI clang_rt.asan_dll_thunk-x86_64.lib
+          fd.exe -HI clang_rt.asan-x86_64.lib
+          fd.exe -HI clang_rt.asan_cxx-x86_64.lib
+          fd.exe -HI clang.exe
+          get-command clang
+        shell: powershell
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        name: 'find files'
+        env:
+          llvm_bin_path: ${{env.GITHUB_WORKSPACE}}\llvm\bin
+          llvm_lib_windows: ${{env.GITHUB_WORKSPACE}}\llvm\lib\clang\13.0.0\lib\windows'     
