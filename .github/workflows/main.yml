@@ -79,4 +79,20 @@ jobs:
         name: 'find files'
         env:
           llvm_bin_path: ${{env.GITHUB_WORKSPACE}}\llvm\bin
-          llvm_lib_windows: ${{env.GITHUB_WORKSPACE}}\llvm\lib\clang\13.0.0\lib\windows'     
+          llvm_lib_windows: ${{env.GITHUB_WORKSPACE}}\llvm\lib\clang\13.0.0\lib\windows'
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          architecture: 'x64' 
+          name: 'use python3.9'
+
+      - run: |
+          pip install cffi
+        shell: powershell
+        name: 'Install python dependencies'
+
+      - run: |
+          python src
+        shell: powershell
+        name: 'build src'
