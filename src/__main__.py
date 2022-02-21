@@ -93,5 +93,5 @@ cmd = " ".join((
     ' py_file_run.c -o py_file_run.exe',
 
 ))
-print cmd
+print (cmd)
 execute(cmd, cwd)
