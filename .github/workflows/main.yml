@@ -24,9 +24,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      # Remove-Item "C:\Program Files\LLVM" -recurse
+          
       - run: |
-          Remove-Item "C:\Program Files\LLVM" -recurse
           dir "C:\Program Files\"
           Get-Location
           Get-ComputerInfo  | select windowsversion
@@ -54,6 +54,7 @@ jobs:
         shell: powershell
         working-directory: ${{env.GITHUB_WORKSPACE}}
         name: 'install llvm 13'
+        if: false
 
       - run: |
           Write-Host Prepending $env:llvm_bin_path to PATH
