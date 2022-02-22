@@ -89,7 +89,7 @@ jobs:
       - run: |
           & curl https://www.python.org/ftp/python/3.9.10/python-3.9.10-amd64.exe -o python-3.9.10-amd64.exe
           & .\python-3.9.10-amd64.exe /passive PrependPath=1 InstallAllUsers=1
-          sleep 20
+          sleep 30
           dir $env:python_bin_path
           echo $env:python_bin_path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         shell: powershell
