@@ -39,6 +39,7 @@ jobs:
         if: false
         
       - run: |
+          dir "C:\hostedtoolcache\windows\Python\"
           Get-Location
           Get-ComputerInfo  | select windowsversion
           [environment]::OSVersion
