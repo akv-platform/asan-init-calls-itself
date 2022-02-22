@@ -148,6 +148,7 @@ jobs:
 
       - run: |
           set
+          which clang
           ./py_file_run.exe ${{env.python.pythonLocation}} test.py
         shell: bash
         working-directory: src
