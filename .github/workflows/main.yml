@@ -54,6 +54,7 @@ jobs:
           choco uninstall --yes --all-versions llvm
         shell: powershell
         name: 'uninstall system llvm'
+        if: false
       
       - run: |
           write-host Downloading llvm
@@ -104,6 +105,18 @@ jobs:
         with:
           python-version: '3.9'
           architecture: 'x64' 
+        if: false
+
+      - run: |
+          write-host Downloading python
+          curl https://www.python.org/ftp/python/3.9.10/python-3.9.10-amd64.exe -o python-3.9.10-amd64.exe
+          write-host Extracting python
+          7z x llvm.exe -ollvm
+          dir llvm
+          dir llvm\bin
+        shell: powershell
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        name: 'install Pyton'
         if: false
 
       - run: |
