@@ -84,7 +84,7 @@ py_file_run_link_flags = f"{link_flags},/wholearchive"
 
 cmd = " ".join((
     f'"{cc}" {cflags_base} {cflags_windows} -Wno-everything '
-    f' -static-libasan ',
+    f' -static-libsan ',
     f'{assan_flags} ',
     f'{py_file_run_link_flags} ',
     f'-I"{python_include_dir}" ',
