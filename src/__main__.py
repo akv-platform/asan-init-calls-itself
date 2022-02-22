@@ -86,12 +86,11 @@ cmd = " ".join((
     f'"{cc}" {cflags_base} {cflags_windows} -Wno-everything '
     f'{assan_flags} ',
     f'{py_file_run_link_flags} ',
-    f'-I{python_include_dir} ',
-    f'-L {python_libs_dir} ',
+    f'-I"{python_include_dir}" ',
+    f'-L"{python_libs_dir}" ',
     # The EXE needs to have clang_rt.asan-x86_64.lib linked
     f' {" ".join([x for x in clang_rt_asan_libs_str])} '
     ' py_file_run.c -o py_file_run.exe',
 
 ))
-print (cmd)
 execute(cmd, cwd)
