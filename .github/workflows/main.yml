@@ -40,6 +40,9 @@ jobs:
         
       - run: |
           dir "C:\hostedtoolcache\windows\Python\"
+          dir "C:\Program Files\LLVM\"
+          dir "C:\Program Files\LLVM\bin\"
+          dir "C:\Program Files\LLVM\lib\"
           Get-Location
           Get-ComputerInfo  | select windowsversion
           [environment]::OSVersion
@@ -81,7 +84,7 @@ jobs:
         name: 'set PATH'
         env:
           llvm_bin_path: C:\Program Files\LLVM\bin
-          llvm_lib_windows: C:\Program Files\LLVM\bin\llvm\lib\clang\13.0.0\lib\windows 
+          llvm_lib_windows: C:\Program Files\LLVM\lib 
 
       - run: |
           & curl https://www.python.org/ftp/python/3.9.10/python-3.9.10-amd64.exe -o python-3.9.10-amd64.exe
