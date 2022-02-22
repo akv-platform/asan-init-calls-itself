@@ -36,6 +36,7 @@ assan_flags = " ".join(("-g", "-gdwarf-4", "-O0", "-fno-omit-frame-pointer",
                         "-fno-optimize-sibling-calls", "-fsanitize=address"))
 
 link_flags = ",".join([
+    "-static-libasan",
     "-Wl",  # -Wl,<arg>               Pass the comma separated arguments in <arg> to the linker
     # lld-link --help to see possibilities
     "/ignore:longsections",
