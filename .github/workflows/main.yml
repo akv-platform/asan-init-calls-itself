@@ -93,7 +93,7 @@ jobs:
         working-directory: ${{env.GITHUB_WORKSPACE}}
         name: 'install pyton'
         env:
-          python_bin_path: "C:\Program Files\Python39"  
+          python_bin_path: 'C:\Program Files\Python39'
 
       - run: |
           write-host $env:path
