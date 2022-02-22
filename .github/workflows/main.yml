@@ -30,15 +30,15 @@ jobs:
           find c:/ -iname api-ms-win-core-synch-l1-2-0.dll
         shell: bash
         name: 'find c:api-ms-win-core-synch-l1-2-0.dll'
+        if: false
 
       - run: |
           find d:/ -iname api-ms-win-core-synch-l1-2-0.dll
         shell: bash
         name: 'find d:api-ms-win-core-synch-l1-2-0.dll'
+        if: false
         
       - run: |
-          Get-WmiObject -Class Win32_Processor -ComputerName.
-          dir "C:\Program Files\"
           Get-Location
           Get-ComputerInfo  | select windowsversion
           [environment]::OSVersion
@@ -51,7 +51,7 @@ jobs:
         name: 'Visual Studio version'
 
       - run: |
-          # choco uninstall --yes --all-versions llvm
+          choco uninstall --yes --all-versions llvm
         shell: powershell
         name: 'uninstall system llvm'
       
@@ -104,6 +104,7 @@ jobs:
         with:
           python-version: '3.9'
           architecture: 'x64' 
+        if: false
 
       - run: |
           pip install cffi
