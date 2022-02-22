@@ -81,8 +81,20 @@ jobs:
         name: 'set PATH'
         env:
           llvm_bin_path: ${{env.GITHUB_WORKSPACE}}\llvm\bin
-          llvm_lib_windows: ${{env.GITHUB_WORKSPACE}}\llvm\lib\clang\13.0.0\lib\windows'        
-      
+          llvm_lib_windows: ${{env.GITHUB_WORKSPACE}}\llvm\lib\clang\13.0.0\lib\windows'   
+
+      - run: |
+          & curl https://www.python.org/ftp/python/3.9.10/python-3.9.10-amd64.exe -o python-3.9.10-amd64.exe
+          & .\python-3.9.10-amd64.exe /passive PrependPath=1 InstallAllUsers=1
+          sleep 45
+          echo $env:python_bin_path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          & python --version
+        shell: powershell
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        name: 'install pyton'
+        env:
+          python_bin_path: "C:\Program Files\Python39"  
+
       - run: |
           write-host $env:path
           write-host Downloading fd
