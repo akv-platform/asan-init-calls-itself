@@ -80,8 +80,8 @@ jobs:
         working-directory: ${{env.GITHUB_WORKSPACE}}
         name: 'set PATH'
         env:
-          llvm_bin_path: ${{env.GITHUB_WORKSPACE}}\llvm\bin
-          llvm_lib_windows: ${{env.GITHUB_WORKSPACE}}\llvm\lib\clang\13.0.0\lib\windows'   
+          llvm_bin_path: C:\Program Files\LLVM\bin
+          llvm_lib_windows: C:\Program Files\LLVM\bin\llvm\lib\clang\13.0.0\lib\windows 
 
       - run: |
           & curl https://www.python.org/ftp/python/3.9.10/python-3.9.10-amd64.exe -o python-3.9.10-amd64.exe
@@ -111,8 +111,8 @@ jobs:
         working-directory: ${{env.GITHUB_WORKSPACE}}
         name: 'find files'
         env:
-          llvm_bin_path: ${{env.GITHUB_WORKSPACE}}\llvm\bin
-          llvm_lib_windows: ${{env.GITHUB_WORKSPACE}}\llvm\lib\clang\13.0.0\lib\windows'
+          llvm_bin_path: C:\Program Files\LLVM\bin\bin
+          llvm_lib_windows: C:\Program Files\LLVM\bin\lib\clang\13.0.0\lib\windows
 
       - uses: actions/setup-python@v2
         with:
