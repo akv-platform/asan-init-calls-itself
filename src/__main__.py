@@ -36,7 +36,7 @@ assan_flags = " ".join(("-g", "-gdwarf-4", "-O0", "-fno-omit-frame-pointer",
                         "-fno-optimize-sibling-calls", "-fsanitize=address"))
 
 link_flags = ",".join([
-    "-static-libasan",
+    "-static-libsan",
     "-Wl",  # -Wl,<arg>               Pass the comma separated arguments in <arg> to the linker
     # lld-link --help to see possibilities
     "/ignore:longsections",
@@ -60,7 +60,7 @@ cmd = (
 execute(cmd, cwd)
 
 cmd = (
-    f'"{cc}" {lib_cflags} {assan_flags} "{clang_rt_asan_thunk_lib}" -static-libasan mylib.o '
+    f'"{cc}" {lib_cflags} {assan_flags} "{clang_rt_asan_thunk_lib}" -static-libsan mylib.o '
     '-shared -o mylib.dll')
 execute(cmd, cwd)
 
