@@ -144,6 +144,13 @@ jobs:
         name: 'build src'
 
       - run: |
+          set
+          ./py_file_run.exe ${{env.python.pythonLocation}} test.py
+        shell: bash
+        working-directory: src
+        name: 'test'
+
+      - run: |
           $dumpbin = vswhere -latest -requires Microsoft.Component.MSBuild -find **\dumpbin.exe | select-object -first 1
           & $dumpbin /dependents py_file_run.exe
           get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
