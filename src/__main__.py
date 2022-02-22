@@ -59,9 +59,8 @@ cmd = (
 )
 execute(cmd, cwd)
 
-
 cmd = (
-    f'"{cc}" {lib_cflags} {assan_flags} "{clang_rt_asan_thunk_lib}" mylib.o '
+    f'"{cc}" {lib_cflags} {assan_flags} "{clang_rt_asan_thunk_lib}" -static-libasan mylib.o '
     '-shared -o mylib.dll')
 execute(cmd, cwd)
 
@@ -85,6 +84,7 @@ py_file_run_link_flags = f"{link_flags},/wholearchive"
 
 cmd = " ".join((
     f'"{cc}" {cflags_base} {cflags_windows} -Wno-everything '
+    f' -static-libasan ',
     f'{assan_flags} ',
     f'{py_file_run_link_flags} ',
     f'-I"{python_include_dir}" ',
