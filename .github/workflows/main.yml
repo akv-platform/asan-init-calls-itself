@@ -27,9 +27,14 @@ jobs:
       # Remove-Item "C:\Program Files\LLVM" -recurse
           
       - run: |
-          find / -iname api-ms-win-core-synch-l1-2-0.dll
+          find c:/ -iname api-ms-win-core-synch-l1-2-0.dll
         shell: bash
-        name: 'find api-ms-win-core-synch-l1-2-0.dll'
+        name: 'find c:api-ms-win-core-synch-l1-2-0.dll'
+
+      - run: |
+          find d:/ -iname api-ms-win-core-synch-l1-2-0.dll
+        shell: bash
+        name: 'find d:api-ms-win-core-synch-l1-2-0.dll'
         
       - run: |
           Get-WmiObject -Class Win32_Processor -ComputerName.
