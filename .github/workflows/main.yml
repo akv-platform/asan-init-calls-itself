@@ -89,7 +89,6 @@ jobs:
           sleep 60
           dir $env:python_bin_path
           echo $env:python_bin_path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          & python --version
         shell: powershell
         working-directory: ${{env.GITHUB_WORKSPACE}}
         name: 'install pyton'
@@ -134,6 +133,7 @@ jobs:
         if: false
 
       - run: |
+          python --version
           pip install cffi
         shell: powershell
         name: 'Install python dependencies'
