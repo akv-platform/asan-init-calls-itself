@@ -140,6 +140,7 @@ jobs:
           pip install cffi
         shell: powershell
         name: 'Install python dependencies'
+        if: false
 
       - run: |
           python src
