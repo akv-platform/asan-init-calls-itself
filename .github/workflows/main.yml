@@ -162,8 +162,9 @@ jobs:
         name: build
 
       - run: |
-          $ENV:LD_PRELOAD
-          #$env:PATH
+          #$ENV:LD_PRELOAD
+          $env:PATH
+          vswhere -latest -requires Microsoft.Component.MSBuild -find **\cl.exe
           #$dumpbin = vswhere -latest -requires Microsoft.Component.MSBuild -find **\dumpbin.exe | select-object -first 1
           #& $dumpbin /dependents py_file_run.exe
           #get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
