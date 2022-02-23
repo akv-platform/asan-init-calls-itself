@@ -46,7 +46,7 @@ includes = f"-I{file_directory}"
 
 def execute(cmd, cwd):
     print(f"{cwd=} running  {cmd=}")
-    cmd_result = run(cmd, cwd'=cwd, capture_output=True)
+    cmd_result = run(cmd, cwd=cwd, capture_output=True)
     if (cmd_result.returncode != 0):
         print(cmd_result.stdout)
         print(cmd_result.stderr)
