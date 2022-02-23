@@ -156,7 +156,7 @@ jobs:
 
       - run: |
           set
-          "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc -fsanitize=address py_file_run.c -o py_file_run.exe
+          "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc -static-libsan -fsanitize=address py_file_run.c -o py_file_run.exe
         shell: cmd
         working-directory: src
         name: build
