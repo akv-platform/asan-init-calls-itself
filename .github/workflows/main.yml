@@ -147,12 +147,12 @@ jobs:
         name: 'build src'
 
       - run: |
-          $env:PATH
-          $dumpbin = vswhere -latest -requires Microsoft.Component.MSBuild -find **\dumpbin.exe | select-object -first 1
-          & $dumpbin /dependents py_file_run.exe
-          get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
-          get-command python39.dll | Format-List *
-          get-command KERNEL32.dll | Format-List *
+          #$env:PATH
+          #$dumpbin = vswhere -latest -requires Microsoft.Component.MSBuild -find **\dumpbin.exe | select-object -first 1
+          #& $dumpbin /dependents py_file_run.exe
+          #get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
+          #get-command python39.dll | Format-List *
+          #get-command KERNEL32.dll | Format-List *
           # python .\test.py
           ./py_file_run.exe ${{env.python.pythonLocation}} .\test.py
         shell: powershell

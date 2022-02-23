@@ -33,7 +33,7 @@ lib_cflags = " ".join((cflags_base, cflags_windows))
 cc = llvm_path / 'bin/clang.exe'
 
 assan_flags = " ".join(("-g", "-gdwarf-4", "-O0", "-fno-omit-frame-pointer",
-                        "-fno-optimize-sibling-calls", "-fsanitize=address"))
+                        "-fno-optimize-sibling-calls", "-fsanitize=address",  "-static-libsan"))
 
 link_flags = ",".join([
     "-Wl",  # -Wl,<arg>               Pass the comma separated arguments in <arg> to the linker
@@ -46,7 +46,7 @@ includes = f"-I{file_directory}"
 
 def execute(cmd, cwd):
     print(f"{cwd=} running  {cmd=}")
-    cmd_result = run(cmd, cwd=cwd, capture_output=True)
+    cmd_result = run(cmd, cwd'=cwd, capture_output=True)
     if (cmd_result.returncode != 0):
         print(cmd_result.stdout)
         print(cmd_result.stderr)
@@ -56,12 +56,12 @@ cmd = (
     f'"{cc}" {lib_cflags} {strict_flags} {assan_flags} {includes} '
     f'-c {sources} -o mylib.o'
 )
-execute(cmd, cwd)
+# execute(cmd, cwd)
 
 cmd = (
-    f'"{cc}" {lib_cflags} {assan_flags} "{clang_rt_asan_thunk_lib}" -static-libsan mylib.o '
+    f'"{cc}" {lib_cflags} {assan_flags} "{clang_rt_asan_thunk_lib}" mylib.o '
     '-shared -o mylib.dll')
-execute(cmd, cwd)
+# execute(cmd, cwd)
 
 py_file_run_c = "py_file_run.c"
 
@@ -82,14 +82,13 @@ print(f"Python libs directory {python_libs_dir}")
 py_file_run_link_flags = f"{link_flags},/wholearchive"
 
 cmd = " ".join((
-    f'"{cc}" {cflags_base} {cflags_windows} -Wno-everything '
-    f' -static-libsan ',
+    f'"{cc}" {cflags_base} {cflags_windows} -Wno-everything ',
     f'{assan_flags} ',
     f'{py_file_run_link_flags} ',
     f'-I"{python_include_dir}" ',
     f'-L"{python_libs_dir}" ',
     # The EXE needs to have clang_rt.asan-x86_64.lib linked
-    f' {" ".join([x for x in clang_rt_asan_libs_str])} '
+    # f' {" ".join([x for x in clang_rt_asan_libs_str])} '
     ' py_file_run.c -o py_file_run.exe',
 
 ))
