@@ -1,9 +1,11 @@
+/*
 #include <Python.h>
 #include <stdio.h>
 #include <string.h>
 #include <vcruntime.h>
 
 #define PYPATH_SIZE 10000
+*/
 
 int main(int argc, char **argv)
 {
