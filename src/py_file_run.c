@@ -7,6 +7,7 @@
 
 int main(int argc, char **argv)
 {
+  /*
   char *pythonhome;
   wchar_t *wpythonhome;
 
@@ -18,7 +19,7 @@ int main(int argc, char **argv)
 
   wprintf(L"================= py_file_run.exe ====================\n");
 
-  /* CLI argument parsing ****************************************************/
+  // CLI argument parsing ****************************************************
   if ((argc < 1) || (argc > 4))
   {
     fprintf(stderr, "USAGE: py_file_run.exe C:/Python39 test_filepath.py\n");
@@ -26,21 +27,21 @@ int main(int argc, char **argv)
   }
   else
   {
-    pythonhome = argv[1]; /* e.g. C:\s\eklang\venv\py39 */
+    pythonhome = argv[1]; // e.g. C:\s\eklang\venv\py39 
     wpythonhome = Py_DecodeLocale(pythonhome, NULL);
     printf("py_file_run: pythonhome = %s\n", pythonhome);
 
-    filename = argv[2]; /* e.g. C:\s\eklang\src\lib\tests\test_m_logic_flex.py */
+    filename = argv[2]; // e.g. C:\s\eklang\src\lib\tests\test_m_logic_flex.py 
     printf("py_file_run: filename = %s\n", filename);
 
     fflush(stdout);
   }
 
-  /* Set python path *********************************************************/
+  // Set python path *********************************************************
   wchar_t pypath[PYPATH_SIZE];
   printf("py_file_run: Python is NOT a virtual environment\n");
   swprintf(pypath, PYPATH_SIZE,
-                                                   /* where {pythondir} C:\hostedtoolcache\windows\Python\3.9.9 */
+                                                   // where {pythondir} C:\hostedtoolcache\windows\Python\3.9.9 
            L"%s;"                                  // {pythondir}
            L"%s\\DLLs;"                            // {pythondir}\DLLs
            L"%s\\Lib;"                             // {pythondir}\Lib
@@ -57,13 +58,13 @@ int main(int argc, char **argv)
 
   Py_SetPath(pypath);
 
-  /* Run Python Script *******************************************************/
+  // Run Python Script *******************************************************
   Py_Initialize();
 
   fp = _Py_fopen(filename, "rb");
   PyRun_SimpleFile(fp, filename);
 
   Py_Finalize();
-
+*/
   return 0;
 }

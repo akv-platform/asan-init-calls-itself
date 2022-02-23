@@ -153,8 +153,8 @@ jobs:
           get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
           get-command python39.dll | Format-List *
           get-command KERNEL32.dll | Format-List *
-          python .\test.py
-          #./py_file_run.exe ${{env.python.pythonLocation}} .\test.py
+          # python .\test.py
+          ./py_file_run.exe ${{env.python.pythonLocation}} .\test.py
         shell: powershell
         working-directory: src
         name: 'test'
