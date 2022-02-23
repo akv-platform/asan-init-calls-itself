@@ -154,15 +154,15 @@ jobs:
 
       - run: |
           : "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc -fuse-ld=lld -Wno-cast-align -fcomment-block-commands=retval -ferror-limit=200 -fmessage-length=0 -fno-short-enums -ffunction-sections -fdata-sections -std=c99 -DWIN32 -D_WINDLL -Wno-everything  -g -gdwarf-4 -O0 -fno-omit-frame-pointer -fno-optimize-sibling-calls -fsanitize=address -static-libsan  -Wl,/ignore:longsections,/WX,/wholearchive  -I"C:\\Program Files\\Python39\\include"  -L"C:\\Program Files\\Python39\\libs"   py_file_run.c -o py_file_run.exe
-          "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc -Wno-cast-align -fcomment-block-commands=retval -ferror-limit=200 -fmessage-length=0 -fno-short-enums -ffunction-sections -fdata-sections -std=c99 -DWIN32 -D_WINDLL -fsanitize=address py_file_run.c -o py_file_run.exe
+          "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc -std=c99 -DWIN32 -D_WINDLL -fsanitize=address py_file_run.c -o py_file_run.exe
         shell: cmd
         working-directory: src
         name: build
 
       - run: |
           #$env:PATH
-          #$dumpbin = vswhere -latest -requires Microsoft.Component.MSBuild -find **\dumpbin.exe | select-object -first 1
-          #& $dumpbin /dependents py_file_run.exe
+          $dumpbin = vswhere -latest -requires Microsoft.Component.MSBuild -find **\dumpbin.exe | select-object -first 1
+          & $dumpbin /dependents py_file_run.exe
           #get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
           #get-command python39.dll | Format-List *
           #get-command KERNEL32.dll | Format-List *
