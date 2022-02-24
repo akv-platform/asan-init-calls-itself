@@ -156,6 +156,13 @@ jobs:
 
       - run: |
           echo %VS140COMNTOOLS%
+          dir "C:\\Program Files (x86)"
+          dir "C:\\Program Files (x86)\\Microsoft Visual Studio"
+          dir "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019"
+          dir "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise"
+          dir "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC"
+          dir "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools"
+          dir "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC"
           dir "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.16.27023"
           dir "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.16.27023\\lib"
           dir "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.16.27023\\lib\\x64"
