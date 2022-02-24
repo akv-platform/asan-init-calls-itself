@@ -172,7 +172,7 @@ jobs:
         name: build
 
       - run: |
-          find '/c/Program Files (x86)\Microsoft Visual Studio' -name 'clang_rt.asan*''
+          find '/c/Program Files (x86)\Microsoft Visual Studio' -name 'clang_rt.asan*'
         shell: bash
         name: 'find clang_rt.asan'
 
