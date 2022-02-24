@@ -172,9 +172,14 @@ jobs:
         name: build
 
       - run: |
+          find '/c/Program Files (x86)\Microsoft Visual Studio' -name 'clang_rt.asan*''
+        shell: bash
+        name: 'find clang_rt.asan'
+
+      - run: |
           #$ENV:LD_PRELOAD
           #$env:PATH
-          vswhere -latest -requires Microsoft.Component.MSBuild -find **\cl.exe
+          #vswhere -latest -requires Microsoft.Component.MSBuild -find **\cl.exe
           #$dumpbin = vswhere -latest -requires Microsoft.Component.MSBuild -find **\dumpbin.exe | select-object -first 1
           #& $dumpbin /dependents py_file_run.exe
           #get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
