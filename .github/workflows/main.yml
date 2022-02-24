@@ -201,7 +201,7 @@ jobs:
         if: false
 
       - run: |
-          call "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
+          call "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
           set
           py_file_run.exe 
         shell: cmd
