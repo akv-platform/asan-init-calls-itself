@@ -181,6 +181,7 @@ jobs:
           find '/c/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC' -iname 'vcvarsall.bat'
         shell: bash
         name: 'find vcvarsall.bat'
+        if: false
 
       - run: |
           #$ENV:LD_PRELOAD
@@ -197,3 +198,12 @@ jobs:
         shell: powershell
         working-directory: src
         name: 'test'
+        if: false
+
+      - run: |
+          call "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
+          set
+          py_file_run.exe 
+        shell: cmd
+        working-directory: src
+        name: build       
