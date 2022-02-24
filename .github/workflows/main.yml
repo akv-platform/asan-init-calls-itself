@@ -178,7 +178,7 @@ jobs:
         if: false
 
       - run: |
-          find '/c/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.29.30133' -iname 'vcvarsall.bat'
+          find '/c/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC' -iname 'vcvarsall.bat'
         shell: bash
         name: 'find vcvarsall.bat'
 
