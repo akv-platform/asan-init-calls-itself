@@ -166,7 +166,7 @@ jobs:
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133"
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib"
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib\x64"
-          "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc  -wholearchive:"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib\x64\clang_rt.asan_cxx-x86_64.lib" -o py_file_run.exe
+          "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc  --wholearchive "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib\x64\clang_rt.asan_cxx-x86_64.lib" -o py_file_run.exe
           : "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc -fsanitize=address py_file_run.c -o py_file_run.exe
         shell: cmd
         working-directory: src
