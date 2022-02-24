@@ -163,23 +163,29 @@ jobs:
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC"
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools"
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC"
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.16.27023"
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.16.27023\lib"
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.16.27023\lib\x64"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib\x64"
           "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc -fsanitize=address py_file_run.c -o py_file_run.exe
         shell: cmd
         working-directory: src
         name: build
 
       - run: |
-          find '/c/Program Files (x86)\Microsoft Visual Studio' -name 'clang_rt.asan*'
+          find '/c/Program Files (x86)/Microsoft Visual Studio' -name 'clang_rt.asan*'
         shell: bash
         name: 'find clang_rt.asan'
+        if: false
+
+      - run: |
+          find '/c/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.29.30133' -iname 'vcvarsall.bat'
+        shell: bash
+        name: 'find vcvarsall.bat'
 
       - run: |
           #$ENV:LD_PRELOAD
           #$env:PATH
-          #vswhere -latest -requires Microsoft.Component.MSBuild -find **\cl.exe
+          vswhere -latest -requires Microsoft.Component.MSBuild -find **\cl.exe
           #$dumpbin = vswhere -latest -requires Microsoft.Component.MSBuild -find **\dumpbin.exe | select-object -first 1
           #& $dumpbin /dependents py_file_run.exe
           #get-command api-ms-win-core-synch-l1-2-0.dll | Format-List *
