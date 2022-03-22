@@ -157,10 +157,7 @@ jobs:
       - run: |
           call "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
           "C:\\Program Files\\LLVM\\bin\\clang++.exe" --target=x86_64-pc-windows-msvc -O1 -fno-omit-frame-pointer -fsanitize=address -c test.cc  -o py_file_run.o
-          :"C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc test.o -fsanitize=address -g -o test.exe
           "C:\\Program Files\\LLVM\\bin\\clang++.exe" --target=x86_64-pc-windows-msvc py_file_run.o -g "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib\x64\clang_rt.asan_cxx-x86_64.lib" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib\x64\clang_rt.asan-x86_64.lib" -o py_file_run.exe
-          : "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc py_file_run.c  "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib\x64\clang_rt.asan_cxx-x86_64.lib" -o py_file_run.exe
-          : "C:\\Program Files\\LLVM\\bin\\clang.exe" --target=x86_64-pc-windows-msvc -fsanitize=address py_file_run.c -o py_file_run.exe
         shell: cmd
         working-directory: src
         name: build
